@@ -2,10 +2,11 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 import { styles } from "../styles";
-import { ComputersCanvas,EarthCanvas } from "./canvas";
+import { ComputersCanvas, EarthCanvas } from "./canvas";
 
 const Hero = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [webGLSupported, setWebGLSupported] = useState(false);
 
   useEffect(() => {
     // Function to check if the screen is mobile size
@@ -13,8 +14,21 @@ const Hero = () => {
       setIsMobile(window.innerWidth <= 768); // Set threshold for mobile screens
     };
 
-    // Set initial value
+    // Function to check WebGL support
+    const checkWebGLSupport = () => {
+      try {
+        const canvas = document.createElement("canvas");
+        return !!(
+          canvas.getContext("webgl") || canvas.getContext("experimental-webgl")
+        );
+      } catch (e) {
+        return false;
+      }
+    };
+
+    // Set initial values
     handleResize();
+    setWebGLSupported(checkWebGLSupport());
 
     // Add event listener for resize
     window.addEventListener("resize", handleResize);
@@ -47,33 +61,48 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Render ComputersCanvas only on non-mobile screens */}
-      {isMobile ? (
-  <div
-    style={{
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      width: "100%",
-      height: "100vh", // Full viewport height
-    }}
-  >
-    <div
-      style={{
-        width: "100%",
-        height: "300px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        marginBottom:"-140px"
-      }}
-    >
-      <EarthCanvas />
-    </div>
-  </div>
-) : (
-  <ComputersCanvas />
-)}
+      {/* Render Canvas based on device and WebGL support */}
+      {webGLSupported ? (
+        isMobile ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+              height: "100vh", // Full viewport height
+            }}
+          >
+            <div
+              style={{
+                width: "100%",
+                height: "300px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                marginBottom: "-140px",
+              }}
+            >
+              <EarthCanvas />
+            </div>
+          </div>
+        ) : (
+          <ComputersCanvas />
+        )
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+            color: "white",
+            fontSize: "18px",
+          }}
+        >
+          Your device does not support the required features to display this content.
+        </div>
+      )}
 
       <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
         <a href="#about">
