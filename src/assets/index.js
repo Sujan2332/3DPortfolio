@@ -42,9 +42,11 @@ import tripguide from "./tripguide.png";
 import qrfind from "./qrfind.png"
 import something from "./something.png"
 import chatsphere from "./chatsphere.png"
+import sai from "./sai.png"
 
 export {
   logo,
+  sai,
   backend,
   creator,
   mobile,
