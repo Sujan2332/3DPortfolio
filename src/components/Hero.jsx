@@ -6,7 +6,7 @@ import { ComputersCanvas, EarthCanvas } from "./canvas";
 
 const Hero = () => {
   const [isMobile, setIsMobile] = useState(false);
-  const [webGLSupported, setWebGLSupported] = useState(false);
+  const [earthCanvasLoaded, setEarthCanvasLoaded] = useState(false);
 
   useEffect(() => {
     // Function to check if the screen is mobile size
@@ -14,21 +14,8 @@ const Hero = () => {
       setIsMobile(window.innerWidth <= 768); // Set threshold for mobile screens
     };
 
-    // Function to check WebGL support
-    const checkWebGLSupport = () => {
-      try {
-        const canvas = document.createElement("canvas");
-        return !!(
-          canvas.getContext("webgl") || canvas.getContext("experimental-webgl")
-        );
-      } catch (e) {
-        return false;
-      }
-    };
-
-    // Set initial values
+    // Set initial value
     handleResize();
-    setWebGLSupported(checkWebGLSupport());
 
     // Add event listener for resize
     window.addEventListener("resize", handleResize);
@@ -38,6 +25,21 @@ const Hero = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    // Refresh the page if on mobile and EarthCanvas is not loaded
+    if (isMobile && !earthCanvasLoaded) {
+      const refreshInterval = setInterval(() => {
+        window.location.reload();
+      }, 2000); // Refresh every 2 seconds
+
+      return () => clearInterval(refreshInterval); // Cleanup interval on component unmount
+    }
+  }, [isMobile, earthCanvasLoaded]);
+
+  const handleEarthCanvasLoad = () => {
+    setEarthCanvasLoaded(true); // Mark EarthCanvas as loaded
+  };
 
   return (
     <section className={`relative w-full h-screen mx-auto`}>
@@ -61,47 +63,32 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Render Canvas based on device and WebGL support */}
-      {webGLSupported ? (
-        isMobile ? (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              width: "100%",
-              height: "100vh", // Full viewport height
-            }}
-          >
-            <div
-              style={{
-                width: "100%",
-                height: "300px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                marginBottom: "-140px",
-              }}
-            >
-              <EarthCanvas />
-            </div>
-          </div>
-        ) : (
-          <ComputersCanvas />
-        )
-      ) : (
+      {/* Render Canvas based on device type */}
+      {isMobile ? (
         <div
           style={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: "100vh",
-            color: "white",
-            fontSize: "18px",
+            width: "100%",
+            height: "100vh", // Full viewport height
           }}
         >
-          Your device does not support the required features to display this content.
+          <div
+            style={{
+              width: "100%",
+              height: "300px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginBottom: "-140px",
+            }}
+          >
+            <EarthCanvas onLoad={handleEarthCanvasLoad} />
+          </div>
         </div>
+      ) : (
+        <ComputersCanvas />
       )}
 
       <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
@@ -126,3 +113,4 @@ const Hero = () => {
 };
 
 export default Hero;
+  
