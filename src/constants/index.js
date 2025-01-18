@@ -32,6 +32,7 @@ import {
   carrent,
   something,
   chatsphere,
+  quizmaster,
   qrfind,
   jobit,
   tripguide,
@@ -268,12 +269,12 @@ const projects = [
       },
     ],
     image: chatsphere,
-    source_code_link: "https://github.com/Sujan2332/ChatSphere",
+    source_code_link: "https://github.com/Sujan2332/QuizMaster",
   },
   {
-    name: "QRFind",
+    name: "Quiz Master",
     description:
-      `A React-based tool for managing emergency contacts,generating unique QR codes, and printing wristbands, with secure data handling.
+      `A dynamic platform for taking quizzes, tracking performance, and viewing rankings. With features for both users and admins, it makes quiz-taking fun, efficient, and interactive.
       `,
     tags: [
       {
@@ -294,7 +295,7 @@ const projects = [
         color: "green-text-gradient",
       },
     ],
-    image: qrfind,
+    image: quizmaster,
     source_code_link: "https://github.com/Sujan2332/QRFind",
   },
 ];

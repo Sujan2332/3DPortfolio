@@ -42,6 +42,7 @@ import tripguide from "./tripguide.png";
 import qrfind from "./qrfind.png"
 import something from "./something.png"
 import chatsphere from "./chatsphere.png"
+import quizmaster from "./quizmaster.png"
 import sai from "./sai.png"
 
 export {
@@ -54,6 +55,7 @@ export {
   something,
   chatsphere,
   qrfind,
+  quizmaster,
   jit,
   stf,
   web,
