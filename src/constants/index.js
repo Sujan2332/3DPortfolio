@@ -269,7 +269,7 @@ const projects = [
       },
     ],
     image: chatsphere,
-    source_code_link: "https://github.com/Sujan2332/QuizMaster",
+    source_code_link: "https://github.com/Sujan2332/ChatSphere",
   },
   {
     name: "Quiz Master",
@@ -296,7 +296,7 @@ const projects = [
       },
     ],
     image: quizmaster,
-    source_code_link: "https://github.com/Sujan2332/QRFind",
+    source_code_link: "https://github.com/Sujan2332/QuizMaster",
   },
 ];
 
