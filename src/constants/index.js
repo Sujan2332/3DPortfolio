@@ -10,33 +10,19 @@ import {
   express,
   school,
   javascript,
-  typescript,
   html,
   css,
   jit,
   render,
   vs,
   reactjs,
-  redux,
-  tailwind,
   iam,
   nodejs,
   mongodb,
   git,
-  figma,
-  docker,
-  meta,
-  starbucks,
-  tesla,
-  shopify,
-  carrent,
   something,
   chatsphere,
   quizmaster,
-  qrfind,
-  jobit,
-  tripguide,
-  threejs,
 } from "../assets";
 
 export const navLinks = [
@@ -47,6 +33,14 @@ export const navLinks = [
   {
     id: "work",
     title: "Education",
+  },
+  {
+    id:"works",
+    title:"Projects"
+  },
+  {
+    id:"resume",
+    title:"Resume",
   },
   {
     id: "contact",

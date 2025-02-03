@@ -45,6 +45,8 @@ import chatsphere from "./chatsphere.png"
 import quizmaster from "./quizmaster.png"
 import sai from "./sai.png"
 
+import resume from './resume/SaiSujan.S-Resume.pdf'
+
 export {
   logo,
   sai,
@@ -57,6 +59,7 @@ export {
   qrfind,
   quizmaster,
   jit,
+  resume,
   stf,
   web,
   ec2,

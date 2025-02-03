@@ -45,7 +45,7 @@ const Navbar = () => {
           <img src={sai} alt='logo' className='w-9 h-9 object-contain' />
           <p className='text-white text-[18px] font-bold cursor-pointer flex '>
             Sai Sujan S &nbsp;
-            <span className='sm:block hidden'> | ReactJS Developer | Mern Stack Developer</span>
+            <span className='sm:block hidden'> | Mern Stack Developer  | ReactJS Developer </span>
           </p>
         </Link>
 
